@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 
@@ -19,10 +20,11 @@ mongoose
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log(err));
 
-
+// Routes
 app.get("/", (req, res) => {
     res.send("API is running");
 });
+app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
